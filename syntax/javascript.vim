@@ -47,7 +47,7 @@ syn match jsBraces "[{}\[\]]"
 syn match jsParens "[()]"
 syn match jsOpSymbols "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\|-="
 syn match jsEndColons "[;,]" " all ; and ,
-syn match jsLogicSymbols "\(&&\)\|\(||\)"
+syn match jsLogicSymbols "\(&&\)\|\(||\)\|\(?\)\|\(:\)"
 syn match jsObjAssign /@\?\I\i*\s*\ze::\@!/ " like foo: 12
  hi def link jsOpSymbols Operator
 hi def link jsLogicSymbols Operator
@@ -96,9 +96,9 @@ hi def link jsGlobals Special
 syn keyword jsTypes true false null undefined
 syn keyword jsProto prototype
 syn keyword jsFunc function
-syn keyword jsInstances delete new instanceof typeof
+syn keyword jsInstances delete new instanceof typeof return
 syn keyword jsIdentifier arguments var let void yield
-syn keyword jsControls if else switch do while for in try catch throw finally return with break continue case default
+syn keyword jsControls if else switch do while for in try catch throw finally with break continue case default
 syn keyword jsMessage alert confirm prompt status
 syn keyword jsThis self this models
 hi def link jsThis Operator
