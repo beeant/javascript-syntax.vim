@@ -31,7 +31,7 @@ syn match jsSpecial "\\\d\d\d\|\\."
 syn region jsStringD start=+"+ skip=+\\\\\|\\"+ end=+"\|$+ contains=jsSpecial,@htmlPreproc
 syn region jsStringS start=+'+ skip=+\\\\\|\\'+ end=+'\|$+ contains=jsSpecial,@htmlPreproc
 syn region jsRegexpString start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end=+/[gi]\{0,2\}\s*$+ end=+/[gi]\{0,2\}\s*[;.,)\]}]+me=e-1 contains=@htmlPreproc oneline
-hi def link jsStringS String
+hi def link jsStringS javascriptstrings
 hi def link jsStringD String
 hi def link jsRegexpString String
 hi def link jsSpecial Special
@@ -49,12 +49,12 @@ syn match jsOpSymbols "=\{1,3}\|!==\|!=\|<\|>\|>=\|<=\|++\|+=\|--\|-="
 syn match jsEndColons "[;,]" " all ; and ,
 syn match jsLogicSymbols "\(&&\)\|\(||\)"
 syn match jsObjAssign /@\?\I\i*\s*\ze::\@!/ " like foo: 12
-" hi def link jsOpSymbols Operator
-" hi def link jsLogicSymbols Operator
-" hi def link jsBraces Error
-" hi def link jsParens Error
-" hi def link jsEndColons Comment
-" hi def link jsObjAssign Constant
+ hi def link jsOpSymbols Operator
+hi def link jsLogicSymbols Operator
+hi def link jsBraces Question
+hi def link jsParens Question
+hi def link jsEndColons Comment
+hi def link jsObjAssign CTagsGlobalVariable
 
 " Context
 syn match jsContext "\<\(this\|that\)\>"
@@ -70,14 +70,16 @@ syn match __jsFuncNamePropLeft "\w\{1,\}\s\?:" contained contains=jsFuncName
 syn match __jsFuncNamePropStatement "\w\{1,\}\s\?:.*function" contains=__jsFuncNamePropLeft,jsFunc,jsFuncArgList
 syn match __jsFuncNameAsLeft "\w\{1,\}\s\?=" contained contains=jsFuncName
 syn match __jsFuncNameAsStatement "\w\{1,\}\s\?=.*function" contains=__jsFuncNameAsLeft,jsFunc,jsFuncArgList
-hi def link jsFuncArg Constant
+hi def link jsFuncArg CTagsGlobalVariable
 hi def link jsFuncName Function
+hi def link jsFuncArgList Function
+
 
 " Things based on convention or library
 syn match jsClassname /\<\u\w*\>/
 syn match jsUnderScore "\<_\."
 syn match jsUnderscoreCalls "\<_[.\[]\"\?\w\{1,\}\"\?\]\?" contains=jsUnderScore
-hi def link jsClassname Structure
+hi def link jsClassname Keyword
 hi def link jsUnderScore Special
 hi def link jsUnderscoreCalls Special
 
@@ -98,13 +100,15 @@ syn keyword jsInstances delete new instanceof typeof
 syn keyword jsIdentifier arguments var let void yield
 syn keyword jsControls if else switch do while for in try catch throw finally return with break continue case default
 syn keyword jsMessage alert confirm prompt status
+syn keyword jsThis self this models
+hi def link jsThis Operator
 hi def link jsTypes Type
 hi def link jsProto Type
-hi def link jsFunc Keyword
+hi def link jsFunc Question
 hi def link jsInstances Keyword
-hi def link jsControls Keyword
+hi def link jsControls Question
 hi def link jsMessage Keyword
-hi def link jsIdentifier Keyword
+hi def link jsIdentifier Identifier
 
 syn keyword jsReserved abstract enum int short boolean export interface static byte extends long super char final native synchronized class float package throws const goto private transient implements protected volatile double import public
 hi def link jsReserved Error
